@@ -14,7 +14,7 @@
 
   - Preserving human characteristics, i.e., tattoo
     
-    Due to the Clothing Elimination Policy, COTTON is able to preserve the human characteristics, i.e.m tattoo.
+    Due to the proposed Clothing Elimination Policy, COTTON is able to preserve the human characteristics, i.e. tattoo.
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/preserving%20human%20characteristics.jpg)
 
   - Preserving clothing characteristics, i.e., neckline

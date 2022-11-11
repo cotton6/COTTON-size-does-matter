@@ -10,3 +10,7 @@
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/m_60.gif)
 
+## Visual comparison with state-of-the-art virtual try-on methods
+
+  - Preserving human characteristics, i.e., tattoo
+  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/preserving%20human%20characteristics.jpg)

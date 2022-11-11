@@ -13,4 +13,5 @@
 ## Visual comparison with state-of-the-art virtual try-on methods
 
   - Preserving human characteristics, i.e., tattoo
+  
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/preserving%20human%20characteristics.jpg)

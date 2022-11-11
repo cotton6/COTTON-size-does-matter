@@ -1,5 +1,5 @@
 # Size Does Matter: Size-aware Virtual Try-on via Clothing-Oriented Transformation Try-on Network
-## Single-garment try-on results (Input human - Target clothes - Try-on results)
+## Single-garment try-on results
 
 ### Same human tries on different clothes
 ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)

@@ -20,5 +20,4 @@
   - Preserving clothing characteristics, i.e., neckline
     
     Our proposed Clothing Segmentation Network properly segments the region of clothes around the neckline that cannot be seen when people wear it. It helps COTTON to yield correct neckline type on try-on results. On the other hand, the baselines all lead to undesired noise around the neckline on the final synthesis results.
-  
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/Vneck%20comparison.jpg)

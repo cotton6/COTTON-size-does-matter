@@ -15,7 +15,7 @@
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/CVPR_outfit_female_masked.gif)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/CVPR_outfit_male_masked.gif)
 
-## Multi-scale try-on results
+## Multi-size try-on results
   - Tops
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/human5_upper9_masked.gif)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/human20_upper163_masked.gif)

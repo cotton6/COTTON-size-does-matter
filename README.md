@@ -7,7 +7,6 @@
   - Different humans try on different clothes
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/w_60_woH.gif)
-  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/m_60_woH.gif)
 
 ## Multi-garment try-on results
@@ -20,6 +19,7 @@
 
 ## Multi-scale try-on results
   - Tops
+  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/human5_upper9_masked.gif)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/human20_upper163_masked.gif)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/human36_upper87_masked.gif)

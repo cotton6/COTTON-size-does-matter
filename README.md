@@ -3,12 +3,12 @@
 
   - Same human tries on different clothes
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
-  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/9331_60.gif)
+  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/9331_60_woH.gif)
   - Different humans try on different clothes
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
-  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/w_60.gif)
+  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/w_60_woH.gif)
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/banner.jpg)
-  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/m_60.gif)
+  ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/Try-on%20results/m_60_woH.gif)
 
 ## Multi-garment try-on results
   - Try-on results with tops tucked-in

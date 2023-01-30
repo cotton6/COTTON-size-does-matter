@@ -1,0 +1,3 @@
+python main.py --mode test --input_dir /WD_4TB/multi_tryon/datasets/datasets_upper_short/product_align/upperS --output_dir /WD_4TB/multi_tryon/datasets/datasets_upper_short/product_align/upperS_all_json
+
+Trained with Adam with lr=0.0001 with cos scheduler

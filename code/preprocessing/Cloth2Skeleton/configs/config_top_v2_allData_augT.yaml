@@ -1,0 +1,55 @@
+
+MODEL_CONFIG:
+  BODY_PART: 'top'
+
+MODE : 'train'
+
+TRAINING_CONFIG:
+
+  EPOCH: 2100
+  BATCH_SIZE: 32
+
+  # lr
+  LR : 0.0001
+
+  # Data augmentation
+  TRAIN_RATIO: 1
+
+  # Setting
+  VIS: False
+
+  # Scheduler
+  SCHEDULER: cosine
+  T_MAX: 100
+  ETA_MIN: 0.000001
+
+  # Optimizer
+  OPTIM : ADAM
+  BETA1: 0.5
+  BETA2: 0.999
+
+  # Directory
+  DATA_DIR: 'Cloth2SkeletonDataset_v2'
+  TRAIN_DIR : 'top_v2_allData_augT'
+  PRETRAIN_DIR : 'weights/upper.pkl'
+
+  # Step Size
+  SAVE_STEP : 50 # epoch based
+  SAVE_START : 100
+
+VAL_CONFIG:
+  # Evaluated Epoch
+  VAL_EPOCH: 1100
+
+  # Directory
+  DATA_DIR: 'Cloth2SkeletonDataset_v2'
+
+TEST_CONFIG:
+  # Evaluated Epoch
+  TEST_EPOCH: 1100
+
+  # Directory
+  INPUT_DIR : None
+  OUTPUT_DIR: None
+
+

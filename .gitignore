@@ -1,0 +1,33 @@
+code/preprocessing/CIHP_PARSING/checkpoint/
+code/preprocessing/U2Net/saved_models/
+code/preprocessing/Sleeve_Classifier/weights/
+code/preprocessing/lower_clf/weights/
+code/preprocessing/Cloth2Skeleton/weights/
+code/preprocessing/ClothSegmentation/weights/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.DS_Store
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.pkl
+*.pth
+*.zip
+

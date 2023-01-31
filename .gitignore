@@ -4,6 +4,7 @@ code/preprocessing/Sleeve_Classifier/weights/
 code/preprocessing/lower_clf/weights/
 code/preprocessing/Cloth2Skeleton/weights/
 code/preprocessing/ClothSegmentation/weights/
+*/runs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

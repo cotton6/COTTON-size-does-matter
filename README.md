@@ -1,4 +1,8 @@
 # Size Does Matter: Size-aware Virtual Try-on via Clothing-oriented Transformation Try-on Network
+
+## Code
+Please see ./code for implementation details.
+
 ## Single-garment try-on results
 
   - Same human tries on different clothes

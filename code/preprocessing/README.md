@@ -111,6 +111,12 @@ cd Cloth2Skeleton
 python main.py --mode test --config configs/config_bottom_v2_allData_augT.yaml --input_dir ../Training_Dataset/1024x768/Example_bottom/product/product --output_dir ../Training_Dataset/1024x768/Example_bottom/product/product_pose
 cd ..
 ```
+
+### Ground truth annotation
+The following image show how we annotate the product pose ground truth. We only label the green points and calculate others by ratio. The ratio are statistic numbers from our dataset.
+![image](https://github.com/cotton6/COTTON-size-does-matter/code/preprocessing/top_ratio.png)
+![image](https://github.com/cotton6/COTTON-size-does-matter/code/preprocessing/bottom_ratio.png)
+
 ## Product Parsing (For Tops)
 Product parsing can help us find out the region of interest, such as sleeve or neckline. Inference is as follow:
 ```

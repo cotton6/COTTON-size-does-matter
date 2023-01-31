@@ -114,8 +114,9 @@ cd ..
 
 ### Ground truth annotation
 The following image show how we annotate the product pose ground truth. We only label the green points and calculate others by ratio. The ratio are statistic numbers from our dataset.
-![image](https://github.com/cotton6/COTTON-size-does-matter/code/preprocessing/top_ratio.png)
-![image](https://github.com/cotton6/COTTON-size-does-matter/code/preprocessing/bottom_ratio.png)
+
+<img src="top_ratio.png" alt="top_ratio" height="200"/>
+<img src="bottom_ratio.png" alt="top_ratio" height="200"/>
 
 ## Product Parsing (For Tops)
 Product parsing can help us find out the region of interest, such as sleeve or neckline. Inference is as follow:

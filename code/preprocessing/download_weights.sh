@@ -41,3 +41,9 @@ if ! test -d "$FILE"; then
     unzip ClothSegmentation/weights.zip -d ClothSegmentation
 fi
 
+FILE=Self-Correction-Human-Parsing/exp-schp-201908301523-atr.pth
+if ! test -f "$FILE"; then
+    echo "$FILE not exists."
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=13iCVTqAATnBbEVMIKRIwzLkV4czMt0kd' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=13iCVTqAATnBbEVMIKRIwzLkV4czMt0kd" -O Self-Correction-Human-Parsing/exp-schp-201908301523-atr.pth && rm -rf /tmp/cookies.txt
+fi
+

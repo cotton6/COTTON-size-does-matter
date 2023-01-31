@@ -136,7 +136,7 @@ class TryonDataset(Dataset):
         kernel[1:kernel_mid+1, kernel_mid] = 1
         binary_mask2 = cv2.dilate(binary_mask1, kernel, iterations = 1)
 
-        binary_mask2 = binary_mask2.astype(np.bool)
+        binary_mask2 = binary_mask2.astype(bool)
         img[~binary_mask2] = 255
         mask[~binary_mask2] = 0
 

@@ -6,7 +6,7 @@ pip3 install -r requirements.txt
 ```
 
 ## preprocessing
-This folder contain all the code for preprocessing.
+This folder contains all the code for preprocessing.
 
 ## main
-This folder contain all the code for training and inference.
+This folder contains all the code for training and inference.

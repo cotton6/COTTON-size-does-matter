@@ -86,9 +86,9 @@ Finally, after all the preprocessing steps, we are going to build the training d
     - human_pose
 - Product:
     - product
-    - product_info (上衣是否有袖子 下半身則為是否為裙子)
+    - product_info
     - product-mask 
-    - product_parsing (上衣才有)
+    - product_parsing
     - product_pose
     - product_skeleton
 

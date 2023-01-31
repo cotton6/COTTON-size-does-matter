@@ -113,7 +113,7 @@ cd ..
 ```
 
 ### Ground truth annotation
-The following image show how we annotate the product pose ground truth. We only label the green points and calculate others by ratio. The ratio are statistic numbers from our dataset.
+Image depicts annotation of product pose ground truth. Only green points labeled, others computed using ratios derived from dataset statistics. Clothes assumed to be aligned and in specific form.
 
 <img src="top_ratio.png" alt="top_ratio" width="200"/>
 <img src="bottom_ratio.png" alt="top_ratio" width="200"/>

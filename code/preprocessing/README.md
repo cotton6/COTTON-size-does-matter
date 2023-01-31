@@ -1,6 +1,13 @@
 # Raw Data Preprocessing
 This Respository is created to do preprocessing to raw dta crawled just from the website. We first use some deep learning model to help filtering out inappropriate data. After that, we use some GUI tool to manullay filter the rest.
 
+## Download required weight
+Please run the following shell to automatically download the required weights.
+```
+./download_weights.sh
+```
+If the shell is not working, you can find the weights on the google drive: https://drive.google.com/drive/folders/1kZVKcurZ49qePDmJABWGcLFnRZs-q7Jv?usp=share_link
+
 ## Introduction
 There are multiple preprocessing step required before we build the dataset. The exact flow is summarized as follow:
 - Human Pose Generation and Filtering

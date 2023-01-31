@@ -534,7 +534,7 @@ class TryonDataset(Dataset):
             kernel = np.zeros((7,7),np.uint8)
             kernel[3] = 1
             mask_torso = cv2.dilate(mask_torso, kernel, iterations = 10)
-            mask_aux = cv2.dilate(mask_aux, kernel, iterations = 5)
+            mask_aux = cv2.dilate(mask_aux, kernel, iterations = 7)
         else:
             c_rgb_array[c_mask_img_array == 0] = 0
             # Load lower subtype

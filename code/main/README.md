@@ -24,8 +24,13 @@ python main.py --config configs/config_top_COTTON.yaml --mode test
 Size scaling (./result/Top_1024x768_COTTON/val/43)
 The following command would scale down the product skeleton, which scale up the clothing on human.
 ```
-python main.py --config configs/config_top_COTTON.yaml --mode test --scale 0.8
+python main.py --config configs/config_top_COTTON.yaml --mode test --scale 0.9
 ```
+The following command would scale up the product skeleton, which scale down the clothing on human.
+```
+python main.py --config configs/config_top_COTTON.yaml --mode test --scale 1.1
+```
+
 
 Clothing untucked (./result/Top_1024x768_COTTON/val/43_untucked)
 ```

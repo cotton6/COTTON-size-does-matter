@@ -68,6 +68,8 @@ After that we use merge the two parsing with the following command:
 python mergeLabel.py --brand Example_top
 ```
 
+## Preprocess for DressCode
+If you start from using DressCode instead of raw_Data, you don't need to run the above preprocessing. We provide the preprocessing for DressCode. Please refer to the file "COTTON_preprocess_for_DressCode.py"
 
 # Build Dataset
 Finally, after all the preprocessing steps, we are going to build the training datasets. Each dataset should contains the following directories.

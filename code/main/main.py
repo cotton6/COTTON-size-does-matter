@@ -336,12 +336,14 @@ if __name__=="__main__":
                         default='configs/config_top.yaml')
     parser.add_argument('--untuck', action='store_true')
     parser.add_argument('--pretrain', action='store_true')
+    parser.add_argument('--scale', type=float, default=1)
     opt = parser.parse_args()
 
     config = yaml.load(open(opt.config, 'r'), Loader=yaml.FullLoader)
     config['MODE'] = opt.mode
     config['TUCK'] = not opt.untuck
     config['PRETRAIN'] = opt.pretrain
+    config['VAL_CONFIG']['SCALE'] = opt.scale
 
     from model_end2end import COTTON, FashionOn_MultiD, FashionOn_VGGLoss
 

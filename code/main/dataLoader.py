@@ -85,6 +85,9 @@ def get_uintVec(a, b):
     # from a point toward b
     return (b-a) / get_dist(a,b)
 
+def get_Vec(a, b):
+    # from a point toward b
+    return (b-a)
 
 
 class TryonDataset(Dataset):
@@ -96,6 +99,8 @@ class TryonDataset(Dataset):
         self.h = config['TRAINING_CONFIG']['RESOLUTION'][0]
         self.tuck = config['TUCK']
         self.parse = config['PARSE']
+        self.adj_pose = 'none' if self.mode == 'train' else 'long'
+        self.scale = config['VAL_CONFIG']['SCALE']
 
         self.transform = transforms.Compose([  \
                 transforms.ToTensor(),   \
@@ -161,7 +166,7 @@ class TryonDataset(Dataset):
         result = result.max(axis=-1)[np.newaxis, ...]
         return result
 
-    def warping_top(self, cloth_rgb, cloth_pose, human_pose, c_parse_array, sleeve_type, adj_pose=False):
+    def warping_top(self, cloth_rgb, cloth_pose, human_pose, c_parse_array, sleeve_type):
         # Measure human body length
         human_shoulder_length = get_dist(human_pose[2],human_pose[5])
         human_limb_length = 0
@@ -170,8 +175,8 @@ class TryonDataset(Dataset):
             if human_pose[limb[0]].sum() == 0 or human_pose[limb[1]].sum() == 0:
                 continue
             human_limb_length = max(human_limb_length, get_dist(human_pose[limb[0]],human_pose[limb[1]]))
-            
-        if adj_pose:
+
+        if self.adj_pose == 'custom':
             human_torso_length = get_dist(human_pose[1],human_pose[8])
             human_waist_length = get_dist(human_pose[9],human_pose[12])
 
@@ -196,6 +201,30 @@ class TryonDataset(Dataset):
             cloth_pose_adjusted[12] = cloth_pose_adjusted[8] + np.array([cloth_shoulder_length * waist_ratio / 2, 0])
 
             cloth_pose = cloth_pose_adjusted
+
+        elif self.adj_pose == 'long':
+            # Get cloth shoulder length
+            cloth_shoulder_length = get_dist(cloth_pose[2],cloth_pose[5])
+            # limb_ratio = human_limb_length / human_shoulder_length * scale
+
+            # Start adjusting
+            scale_factor = 1.414 * self.scale
+            cloth_pose_adjusted = cloth_pose.copy()
+
+            cloth_pose_adjusted[3] = cloth_pose_adjusted[2] + get_Vec(cloth_pose[2], cloth_pose[3]) * self.scale #right_elbow
+            cloth_pose_adjusted[4] = cloth_pose_adjusted[3] + get_Vec(cloth_pose[3], cloth_pose[4]) * self.scale #right_wrist
+
+            cloth_pose_adjusted[6] = cloth_pose_adjusted[5] + get_Vec(cloth_pose[5], cloth_pose[6]) * self.scale #left_elbow
+            cloth_pose_adjusted[7] = cloth_pose_adjusted[6] + get_Vec(cloth_pose[6], cloth_pose[7]) * self.scale #left_wrist
+
+
+            cloth_pose_adjusted[8, 1] = cloth_pose_adjusted[1, 1] + scale_factor * cloth_shoulder_length
+            cloth_pose_adjusted[9, 1] = cloth_pose_adjusted[1, 1] + scale_factor * cloth_shoulder_length
+            cloth_pose_adjusted[12,1] = cloth_pose_adjusted[1, 1] + scale_factor * cloth_shoulder_length
+
+            cloth_pose = cloth_pose_adjusted
+        else:
+            pass
 
         # arms
         arms = np.zeros_like(cloth_rgb)
@@ -249,12 +278,12 @@ class TryonDataset(Dataset):
 
         return arms, torso_warped
 
-    def warping_bottom(self, cloth_rgb, cloth_pose, human_pose, cloth_sub_type, adj_pose=False):
+    def warping_bottom(self, cloth_rgb, cloth_pose, human_pose, cloth_sub_type):
         # correct waist of cloth skeleton to horizontal
         cloth_pose[9,1] = cloth_pose[8,1]
         cloth_pose[12,1] = cloth_pose[8,1]
 
-        if adj_pose:
+        if self.adj_pose == 'custom':
             # Measure human body length
             human_waist_length = get_dist(human_pose[9],human_pose[12])
             human_thigh_length = max(get_dist(human_pose[9],human_pose[10]), get_dist(human_pose[12],human_pose[13]))
@@ -264,8 +293,8 @@ class TryonDataset(Dataset):
             cloth_waist_length = get_dist(cloth_pose[9],cloth_pose[12])
             
             # Get body ratio
-            thigh_ratio = human_thigh_length / cloth_waist_length
-            calf_ratio = human_calf_length / cloth_waist_length
+            thigh_ratio = human_thigh_length / human_waist_length
+            calf_ratio = human_calf_length / human_waist_length
 
             # Start adjusting
             cloth_pose_adjusted = cloth_pose.copy()
@@ -276,6 +305,35 @@ class TryonDataset(Dataset):
             cloth_pose_adjusted[14] = cloth_pose_adjusted[13] + get_uintVec(cloth_pose[13], cloth_pose[14]) * cloth_waist_length * calf_ratio #left_ankle
 
             cloth_pose = cloth_pose_adjusted
+
+        elif self.adj_pose == 'long':
+            if cloth_sub_type == 0:
+                mask_nonzero = np.transpose(np.nonzero(cloth_rgb)).tolist()
+                h_sorted_mask_nonzero = sorted(mask_nonzero, key=lambda s:s[0])
+                w_sorted_mask_nonzero = sorted(mask_nonzero, key=lambda s:s[1])
+                h_min, h_max = h_sorted_mask_nonzero[0][0], h_sorted_mask_nonzero[-1][0]
+                w_min, w_max = w_sorted_mask_nonzero[0][1], w_sorted_mask_nonzero[-1][1]
+                cloth_width = w_max - w_min
+                cloth_height = h_max - h_min
+                cloth_ratio = cloth_height / cloth_width
+
+                if max(cloth_pose[11,1], cloth_pose[14,1]) < h_max:
+                    pose_leg_length = max(cloth_pose[11,1], cloth_pose[14,1]) - min(cloth_pose[9,1], cloth_pose[12,1])
+                    cloth_leg_length = h_max - min(cloth_pose[9,1], cloth_pose[12,1])
+                    rescale_ratio = cloth_leg_length / pose_leg_length * self.scale
+                else:
+                    rescale_ratio = self.scale
+
+                cloth_pose_adjusted = cloth_pose.copy()
+                cloth_pose_adjusted[10] = cloth_pose_adjusted[9] + get_Vec(cloth_pose[9], cloth_pose[10]) * rescale_ratio #right_knee
+                cloth_pose_adjusted[11] = cloth_pose_adjusted[10] + get_Vec(cloth_pose[10], cloth_pose[11]) * rescale_ratio #right_ankle
+
+                cloth_pose_adjusted[13] = cloth_pose_adjusted[12] + get_Vec(cloth_pose[12], cloth_pose[13]) * rescale_ratio #left_knee
+                cloth_pose_adjusted[14] = cloth_pose_adjusted[13] + get_Vec(cloth_pose[13], cloth_pose[14]) * rescale_ratio #left_ankle
+                cloth_pose = cloth_pose_adjusted
+            
+        else:
+            pass
 
         
         # legs
@@ -358,9 +416,9 @@ class TryonDataset(Dataset):
                 torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 3))*255).astype(np.uint8))
         else:    
             if self.parse == 'atr':
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 2) | (parse_array == 7) | (parse_array == 3))*255).astype(np.uint8))
+                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 2) | (parse_array == 7) | (parse_array == 3) | (parse_array == 14))*255).astype(np.uint8))
             else:
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 7) | (parse_array == 3))*255).astype(np.uint8))
+                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 7) | (parse_array == 3) | (parse_array == 14))*255).astype(np.uint8))
         aux_over_arms = cv2.bitwise_and(mask_aux, (parse_arms*255).astype(np.uint8))
         
         pbg = torch.from_numpy(parse_bg)
@@ -475,7 +533,7 @@ class TryonDataset(Dataset):
             ret, mask_aux = cv2.threshold(c_aux_gray, 0, 255, cv2.THRESH_BINARY)
             kernel = np.zeros((7,7),np.uint8)
             kernel[3] = 1
-            mask_torso = cv2.dilate(mask_torso, kernel, iterations = 5)
+            mask_torso = cv2.dilate(mask_torso, kernel, iterations = 10)
             mask_aux = cv2.dilate(mask_aux, kernel, iterations = 5)
         else:
             c_rgb_array[c_mask_img_array == 0] = 0

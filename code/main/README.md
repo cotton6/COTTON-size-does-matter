@@ -5,7 +5,7 @@ Please run the following shell to automatically download the required weights.
 ```
 ./download_weights.sh
 ```
-If the shell is not working, you can find the weights on the google drive: https://drive.google.com/drive/folders/1kZVKcurZ49qePDmJABWGcLFnRZs-q7Jv?usp=share_link
+If the shell is not working, you can find the weights on the google drive: https://drive.google.com/drive/folders/1XQk30HjIkUQtKkCqELj74oqELRj4QD3f?usp=sharing
 
 ## Quick Start
 We provide two pretrained weight, which are trained on the self-collect dataset (with face) and the DressCode (face masked) dataset.

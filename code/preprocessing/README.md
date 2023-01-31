@@ -6,7 +6,7 @@ Please run the following shell to automatically download the required weights.
 ```
 ./download_weights.sh
 ```
-If the shell is not working, you can find the weights on the google drive: https://drive.google.com/drive/folders/1kZVKcurZ49qePDmJABWGcLFnRZs-q7Jv?usp=share_link
+If the shell is not working, you can find the weights on the google drive: https://drive.google.com/drive/folders/1XQk30HjIkUQtKkCqELj74oqELRj4QD3f?usp=sharing
 
 ## Introduction
 There are multiple preprocessing step required before we build the dataset. The exact flow is summarized as follow:

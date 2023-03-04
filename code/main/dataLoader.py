@@ -410,15 +410,9 @@ class TryonDataset(Dataset):
         parse_arms = (parse_array == 8) | (parse_array == 9)
 
         if self.tuck:
-            if self.parse == 'atr':
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 2) | (parse_array == 3))*255).astype(np.uint8))
-            else:
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 3))*255).astype(np.uint8))
+            torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 3))*255).astype(np.uint8))
         else:    
-            if self.parse == 'atr':
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 2) | (parse_array == 7) | (parse_array == 3) | (parse_array == 14))*255).astype(np.uint8))
-            else:
-                torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 7) | (parse_array == 3) | (parse_array == 14))*255).astype(np.uint8))
+            torso_over_neck = cv2.bitwise_and(mask_torso, (((parse_array == 7) | (parse_array == 3) | (parse_array == 14))*255).astype(np.uint8))
         aux_over_arms = cv2.bitwise_and(mask_aux, (parse_arms*255).astype(np.uint8))
         
         pbg = torch.from_numpy(parse_bg)
@@ -432,10 +426,7 @@ class TryonDataset(Dataset):
             pass
         else:
             mask_shoulder_draw.line([tuple(pose_data[2] - 0.5*vector), tuple(pose_data[5] + 0.5*vector)], 'white', width=int(0.8*np.linalg.norm(pose_data[2]-pose_data[5])))
-            if self.parse == 'atr':
-                parse_shoulder = (np.array(mask_shoulder) / 255) * ((parse_array == 2) | (parse_array == 3) | (parse_array == 8) | (parse_array == 9)).astype(np.float32)
-            else:
-                parse_shoulder = (np.array(mask_shoulder) / 255) * ((parse_array == 3) | (parse_array == 8) | (parse_array == 9)).astype(np.float32)
+            parse_shoulder = (np.array(mask_shoulder) / 255) * ((parse_array == 3) | (parse_array == 8) | (parse_array == 9)).astype(np.float32)
             human_parse_masked.paste(0, None, Image.fromarray(np.uint8(parse_shoulder * 255), 'L'))
             human_masked.paste((255,255,255), None, Image.fromarray(np.uint8(parse_shoulder * 255), 'L'))
 

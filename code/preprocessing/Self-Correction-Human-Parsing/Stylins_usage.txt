@@ -1,1 +1,0 @@
-python simple_extractor.py --dataset atr --model-restore exp-schp-201908301523-atr.pth --input-dir Zalando_winter_data --output-dir Zalando_winter_data_out

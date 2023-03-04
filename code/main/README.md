@@ -10,18 +10,18 @@ If the shell is not working, you can find the weights on the google drive: https
 ## Quick Start
 We provide two pretrained weight, which are trained on the self-collect dataset (with face) and the DressCode (face masked) dataset.
 
-Test paired result (./result/Top_1024x768_COTTON/val/43)
+Test paired result (./result/Top_1024x768_COTTON/val/1)
 ```
 python main.py --config configs/config_top_COTTON.yaml --mode val
 ```
 
-Test unpaired result (./result/Top_1024x768_COTTON/test/43)
+Test unpaired result (./result/Top_1024x768_COTTON/test/1)
 ```
 python main.py --config configs/config_top_COTTON.yaml --mode test
 ```
 
 ## Advanced
-Size scaling (./result/Top_1024x768_COTTON/val/43)
+Size scaling (./result/Top_1024x768_COTTON/val/1)
 The following command would scale down the product skeleton, which scale up the clothing on human.
 ```
 python main.py --config configs/config_top_COTTON.yaml --mode test --scale 0.9
@@ -32,7 +32,7 @@ python main.py --config configs/config_top_COTTON.yaml --mode test --scale 1.1
 ```
 
 
-Clothing untucked (./result/Top_1024x768_COTTON/val/43_untucked)
+Clothing untucked (./result/Top_1024x768_COTTON/val/1_untucked)
 ```
 python main.py --config configs/config_top_COTTON.yaml --mode test --untuck
 ```

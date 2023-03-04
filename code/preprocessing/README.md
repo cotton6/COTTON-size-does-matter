@@ -31,6 +31,7 @@ The file structure is as follows:
             - pose
                 - 1_model_keypoints.json
 
+**We provide some example in raw_Data folder, please follow the following commands to preprocess the data.**
 
 We filter out those models with weird pose. To filter out them, we provide the following command:
 ```

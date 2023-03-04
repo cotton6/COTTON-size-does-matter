@@ -4,6 +4,11 @@ code/preprocessing/Sleeve_Classifier/weights/
 code/preprocessing/lower_clf/weights/
 code/preprocessing/Cloth2Skeleton/weights/
 code/preprocessing/ClothSegmentation/weights/
+
+code/preprocessing/pose_filtered_Data/
+code/preprocessing/parse_filtered_Data/
+code/preprocessing/Training_Dataset/
+
 */runs/
 
 # Byte-compiled / optimized / DLL files

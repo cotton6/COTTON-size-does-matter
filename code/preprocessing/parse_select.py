@@ -97,12 +97,18 @@ def parse_check(opt):
             if valid:
                 shutil.copy2(data.replace('CIHP', 'model').replace('.png', '.jpg'), temp_model_folder)
                 shutil.copy2(data.replace('CIHP', 'pose').replace('.png', '_keypoints.json'), temp_pose_folder)
-                products = [
-                    data.replace('CIHP', 'product').replace('model.png', 'product_{}.jpg'.format(i)) for
-                    i in range(1, 5)]
-                for product in products:
-                    if os.path.isfile(product):
-                        shutil.copy2(product, temp_product_folder)
+
+                if opt.multi_product:
+                    products = [
+                        data.replace('CIHP', 'product').replace('model.png', 'product_{}.jpg'.format(i)) for
+                        i in range(1, 5)]
+                    for product in products:
+                        if os.path.isfile(product):
+                            shutil.copy2(product, temp_product_folder)
+                else:
+                    product = data.replace('CIHP', 'product').replace('model.png', 'product.jpg')
+                    shutil.copy2(product, temp_product_folder)
+
                 shutil.copy2(data, temp_CIHP_folder)
                 shutil.copy2(os.path.join(os.path.dirname(data), 'vis', os.path.basename(data)), temp_CIHP_vis_folder)
             else:
@@ -122,6 +128,7 @@ if __name__ == "__main__":
     parser.add_argument("--root",
                         type=str,
                         default='pose_filtered_Data')          
+    parser.add_argument("--multi-product", action='store_true')          
     opt = parser.parse_args()
 
     parse_check(opt)

@@ -83,8 +83,8 @@ def openpose_check(opt):
 
             valid = pose_valid_check(skeleton)
             if valid:
+                shutil.copy2(data.replace('pose', 'model').replace('_keypoints.json', '.jpg'), temp_model_folder)
                 if opt.multi_product:
-                    shutil.copy2(data.replace('pose', 'model').replace('_keypoints.json', '.jpg'), temp_model_folder)
                     products = [
                         data.replace('pose', 'product').replace('model_keypoints.json', 'product_{}.jpg'.format(i)) for
                         i in range(1, 5)]

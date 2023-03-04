@@ -83,15 +83,17 @@ def openpose_check(opt):
 
             valid = pose_valid_check(skeleton)
             if valid:
-                # temp_garbage += 1
-            # if 0 < ratio < 1.5:
-                shutil.copy2(data.replace('pose', 'model').replace('_keypoints.json', '.jpg'), temp_model_folder)
-                products = [
-                    data.replace('pose', 'product').replace('model_keypoints.json', 'product_{}.jpg'.format(i)) for
-                    i in range(1, 5)]
-                for product in products:
-                    if os.path.isfile(product):
-                        shutil.copy2(product, temp_product_folder)
+                if opt.multi_product:
+                    shutil.copy2(data.replace('pose', 'model').replace('_keypoints.json', '.jpg'), temp_model_folder)
+                    products = [
+                        data.replace('pose', 'product').replace('model_keypoints.json', 'product_{}.jpg'.format(i)) for
+                        i in range(1, 5)]
+                    for product in products:
+                        if os.path.isfile(product):
+                            shutil.copy2(product, temp_product_folder)
+                else:
+                    product = data.replace('pose', 'product').replace('model_keypoints.json', 'product.jpg')
+                    shutil.copy2(product, temp_product_folder)
                 shutil.copy2(data, temp_pose_folder)
             else:
                 temp_garbage += 1
@@ -109,7 +111,8 @@ if __name__ == "__main__":
                         default=None)
     parser.add_argument("--root",
                         type=str,
-                        default='raw_Data')          
+                        default='raw_Data')  
+    parser.add_argument("--multi-product", action='store_true')          
     opt = parser.parse_args()
 
     openpose_check(opt)

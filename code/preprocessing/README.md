@@ -25,11 +25,11 @@ The file structure is as follows:
     - Example_top (brand)
         - tops (cloth category)
             - model
-                1_model.jpg
+                - 1_model.jpg
             - product
-                1_product.jpg
+                - 1_product.jpg
             - pose
-                1_model_keypoints.json
+                - 1_model_keypoints.json
 
 
 We filter out those models with weird pose. To filter out them, we provide the following command:

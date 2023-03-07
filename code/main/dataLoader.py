@@ -93,6 +93,7 @@ def get_Vec(a, b):
 class TryonDataset(Dataset):
     def __init__(self, config):
         super(TryonDataset,self).__init__()
+        self.config = config
         self.mode = config['MODE'] #train or test
         self.dataroot = config['TRAINING_CONFIG']['DATA_DIR'] if self.mode == 'train' else config['VAL_CONFIG']['DATA_DIR']
         self.w = config['TRAINING_CONFIG']['RESOLUTION'][1]

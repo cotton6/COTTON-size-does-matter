@@ -127,6 +127,14 @@ Image depicts annotation of product pose ground truth. Only green points labeled
 <img src="top_ratio.png" alt="top_ratio" width="200"/>
 <img src="bottom_ratio.png" alt="top_ratio" width="200"/>
 
+### Labeling tool
+We also provide landmarks labeling tool, please use the following command.
+```
+python landmarks_label_tool.py 
+```
+For each clothing, you should use your mouse to left-click on right shoulder, right elbow, left shoulder, left elbow in order. After clicking the 4 points, the labeled landmarks would be shown on the image, and please press any button to continue. (We assume the sleeves of clothing is straight.)
+<img src="label_progress.png" alt="top_ratio" width="200"/>
+
 ## Product Parsing (For Tops)
 Product parsing can help us find out the region of interest, such as sleeve or neckline. Inference is as follow:
 ```

@@ -417,6 +417,27 @@ class TryonDataset(Dataset):
         
         pbg = torch.from_numpy(parse_bg)
         pbg.unsqueeze_(0) 
+
+        if (self.mode == 'train' and random.random() > 0.5) or (self.mode != 'train' and self.config['VAL_CONFIG']['MASK_ARM']):
+            # Mask arms
+            r = 8
+            for parse_id, pose_ids in [(8, [2, 5, 6, 7]), (9, [5, 2, 3, 4])]:
+                mask_arm = Image.new('L', (self.w, self.h), 'black')
+                mask_arm_draw = ImageDraw.Draw(mask_arm)
+                i_prev = pose_ids[0]
+                for i in pose_ids[1:]:
+                    # print("i_prev = {}, i = {}".format(i_prev, i))
+                    if (pose_data[i_prev, 0] == 0.0 and pose_data[i_prev, 1] == 0.0) or (pose_data[i, 0] == 0.0 and pose_data[i, 1] == 0.0):
+                        continue
+                    mask_arm_draw.line([tuple(pose_data[j]) for j in [i_prev, i]], 'white', width=r*10)
+                    pointx, pointy = pose_data[i]
+                    radius = r*2 if i == pose_ids[-1] else r*5
+                    mask_arm_draw.ellipse((pointx-radius, pointy-radius, pointx+radius, pointy+radius), 'white', 'white')
+                    i_prev = i
+                parse_arm = (np.array(mask_arm) / 255) * (parse_array == parse_id).astype(np.float32)
+                
+                human_parse_masked.paste(0, None, Image.fromarray(np.uint8(parse_arm * 255), 'L'))
+                human_masked.paste((255,255,255), None, Image.fromarray(np.uint8(parse_arm * 255), 'L'))
         
         # mask shoulder
         mask_shoulder = Image.new('L', (self.w, self.h), 'black')

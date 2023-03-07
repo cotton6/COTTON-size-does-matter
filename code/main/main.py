@@ -107,15 +107,6 @@ def train(config):
         start_epoch = 0
         print("=> no checkpoint found at '{}'".format(weight_path))
 
-        if config['PRETRAIN']:
-            print("=> loading pretrain...")
-            checkpoint = torch.load('/home/andrew/High_Resolution_Tryon/result/Top_1024x768_equal_weight/weights/Top_1024x768_equal_weight_43.pkl', map_location='cpu')
-            model.load_state_dict(checkpoint['state_dict'])
-            discriminator.load_state_dict(checkpoint['state_dict_D'])
-            optimizer_G.load_state_dict(checkpoint['optimizer_G'])
-            optimizer_D.load_state_dict(checkpoint['optimizer_D'])
-        
-
     board = SummaryWriter(run_dir)
 
     for epoch in range(start_epoch, config['TRAINING_CONFIG']['EPOCH']):
@@ -335,15 +326,15 @@ if __name__=="__main__":
                         type=str,
                         default='configs/config_top.yaml')
     parser.add_argument('--untuck', action='store_true')
-    parser.add_argument('--pretrain', action='store_true')
     parser.add_argument('--scale', type=float, default=1)
+    parser.add_argument('--mask_arm', action='store_true')
     opt = parser.parse_args()
 
     config = yaml.load(open(opt.config, 'r'), Loader=yaml.FullLoader)
     config['MODE'] = opt.mode
     config['TUCK'] = not opt.untuck
-    config['PRETRAIN'] = opt.pretrain
     config['VAL_CONFIG']['SCALE'] = opt.scale
+    config['VAL_CONFIG']['MASK_ARM'] = opt.mask_arm
 
     from model_end2end import COTTON, FashionOn_MultiD, FashionOn_VGGLoss
 

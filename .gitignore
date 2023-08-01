@@ -9,6 +9,9 @@ code/preprocessing/pose_filtered_Data/
 code/preprocessing/parse_filtered_Data/
 code/preprocessing/Training_Dataset/
 
+code/
+Try-on results/
+
 */runs/
 
 # Byte-compiled / optimized / DLL files

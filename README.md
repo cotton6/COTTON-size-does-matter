@@ -1,5 +1,21 @@
-# Size Does Matter: Size-aware Virtual Try-on via Clothing-oriented Transformation Try-on Network
-[ICCV2023] Official Pytorch based implementation.
+<div align="center">
+
+<h1>[ICCV'23] Size Does Matter: Size-aware Virtual Try-on via Clothing-oriented Transformation Try-on Network</h1>
+
+<div>
+    Chieh-Yun Chen<sup>1,2</sup>,
+    Yi-Chung Chen<sup>1,3</sup>,
+    Hong-Han Shuai<sup>2</sup>,
+    Wen-Huang Cheng<sup>3</sup>,
+</div>
+<div>
+    <sup>1</sup>Stylins.ai&emsp; <sup>2</sup>National Yang Ming Chiao Tung University&emsp;  <sup>3</sup>National Taiwan University
+</div>
+
+
+Official Pytorch implementation [[Paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Chen_Size_Does_Matter_Size-aware_Virtual_Try-on_via_Clothing-oriented_Transformation_Try-on_ICCV_2023_paper.pdf)][[Supplement](https://openaccess.thecvf.com/content/ICCV2023/supplemental/Chen_Size_Does_Matter_ICCV_2023_supplemental.pdf)]
+
+</div>
 
 ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/TryOn_results/banner_size_noHead.jpg)
 
@@ -31,3 +47,18 @@ Coming Soon!
     
     Our proposed *Clothing Segmentation Network* properly segments the region of clothes around the neckline that cannot be seen when people wear it. It helps COTTON to yield correct neckline type on try-on results. On the other hand, the baselines all lead to undesired noise around the neckline on the final synthesis results.
   ![image](https://github.com/cotton6/COTTON-size-does-matter/blob/main/TryOn_results/Vneck%20comparison_woH.jpg)
+
+## Citation
+
+
+```bibtex
+@InProceedings{Chen_2023_ICCV,
+    author    = {Chen, Chieh-Yun and Chen, Yi-Chung and Shuai, Hong-Han and Cheng, Wen-Huang},
+    title     = {Size Does Matter: Size-aware Virtual Try-on via Clothing-oriented Transformation Try-on Network},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {7513-7522}
+}
+```
+

@@ -1,0 +1,65 @@
+MODEL_CONFIG:
+  BODY_PART: 'top'
+  VERSION: 'origin'
+
+MODE : 'train'
+PARSE: 'merge'
+
+TRAINING_CONFIG:
+
+  EPOCH: 50
+  BATCH_SIZE: 1
+  ACC_STEP: 16
+  NUM_WORKER: 12
+
+  # lr
+  LR : 0.0002
+
+  # Setting
+  VIS: False
+  RESOLUTION: [1024, 768]
+  D_SAMPLE: 4
+  USE_DIFFAUG: True
+
+  # Scheduler
+  SCHEDULER: False
+  T_MAX: 10
+  ETA_MIN: 0
+
+  # Optimizer
+  OPTIM : ADAM
+  BETA1: 0.5
+  BETA2: 0.999
+
+  # Directory
+  DATA_DIR: 'data/1024x768/Example_top'
+  TRAIN_DIR : 'Top_1024x768_Example'
+  SAMPLE_DIR: 'Train_Process'
+
+  # Step Size
+  SAMPLE_STEP: 200 # iteration based
+  SAVE_STEP : 1 # epoch based
+  SAVE_START : 10
+
+  # Lambda Loss
+  LAMBDA_L1: 1
+  LAMBDA_VGG: 50
+  LAMBDA_VGG_STYLE: 500
+  LAMBDA_VGG_CONTENT: 0.5
+  LAMBDA_FOCAL: 50
+  LAMBDA_GAN: 1
+
+
+VAL_CONFIG:
+  # Evaluated Epoch
+  START_EPOCH: 1
+  END_EPOCH: 2
+  EPOCH_STEP: 1
+  BATCH_SIZE: 1
+  SCALE: 1
+
+  # Directory
+  DATA_DIR: 'data/1024x768/Example_top'
+
+
+
